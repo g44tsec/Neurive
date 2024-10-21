@@ -641,8 +641,11 @@ h1 {
         font-size: 1rem;
     }
 }
+
 .hub-container {
-    display: none;
+    display: block;
+}
+
 }
 #chain-play {
     max-width: 600px; /* Reduce the size of the Chain Play container */
