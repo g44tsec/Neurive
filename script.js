@@ -425,14 +425,26 @@ function showGameHub() {
 }
 // JavaScript to show the game hub and hide the intro hub
 
+// Function to show the game hub and hide the intro hub
 function showGameHub() {
     const introHub = document.getElementById('intro-hub');
-    const gameHub = document.querySelector('.hub-container:not(#intro-hub)');
+    const gameHub = document.getElementById('game-hub');
 
-    // Hide the intro hub and show the game hub
+    // Hide intro hub, show game hub
     introHub.style.display = 'none';
     gameHub.style.display = 'block';
 }
+
+// Function to show the intro hub and hide the game hub
+function showIntroHub() {
+    const introHub = document.getElementById('intro-hub');
+    const gameHub = document.getElementById('game-hub');
+
+    // Hide game hub, show intro hub
+    gameHub.style.display = 'none';
+    introHub.style.display = 'block';
+}
+
 
 
 
