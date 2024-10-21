@@ -1,3 +1,15 @@
+//check
+
+function showGameHub() {
+    const introHub = document.getElementById('intro-hub');
+    const gameHub = document.querySelector('.hub-container');
+    
+    // Hide the intro hub and show the game hub
+    introHub.style.display = 'none';
+    gameHub.style.display = 'block';
+}
+
+
 // Modal Functions
 function openModal(gameId) {
   const contents = document.querySelectorAll('.game-content');
