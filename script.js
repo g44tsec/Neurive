@@ -403,5 +403,14 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Grid item touched', e.target); // Handle touch for grid
   });
 });
+function showGameHub() {
+    const introHub = document.getElementById('intro-hub');
+    const gameHub = document.querySelector('.hub-container');
+    
+    // Hide the intro hub and show the game hub
+    introHub.style.display = 'none';
+    gameHub.style.display = 'block';
+}
+
 
 
