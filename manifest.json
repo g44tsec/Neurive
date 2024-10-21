@@ -7,7 +7,7 @@
     "theme_color": "#13294B",
     "icons": [
       {
-        "src": "neurive.png",
+        "src": "https://raw.githubusercontent.com/g44tsec/Neurive/main/Neurive.png",
         "sizes": "192x192",
         "type": "image/png"
       }
