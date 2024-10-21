@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Hub - Neurive</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Web App Manifest for mobile -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- iOS Support: Add to Home Screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Neurive">
+    <link rel="apple-touch-icon" href="neurive.png">
+</head>
+<body>
+    <div class="hub-container">
+        <h1>Neurive</h1>
+        <p>Try These Three Games To Improve Your Memory</p>
+        <p2>Author/Creator: Ronit Kalura (2028) Congressional App Challenge - Neurive</p2>
+        
+        <!-- Game selection buttons -->
+        <div class="games-list">
+            <button class="game-btn" onclick="openModal('oddoneout')">Odd Block</button>
+            <button class="game-btn" onclick="openModal('chain-play')">Wordie</button>
+            <button class="game-btn" onclick="openModal('letter-recall')">Flash</button>
+        </div>
+    </div>
+
+    <!-- Odd One Out Game Section -->
+    <div id="oddoneout" class="game-content">
+        <span class="close" onclick="closeGame()">&times;</span>
+        <h2>Odd Block</h2>
+        <p>Click on the block that looks different!</p>
+        <div id="grid" class="grid-container"></div>
+        <button id="restart" class="restart-btn">Try Again!</button>
+        <p>Level: <span id="level">1</span></p>
+    </div>
+
+    <!-- Chain Play Game Section -->
+    <div id="chain-play" class="game-content" style="display: none;">
+        <span class="close" onclick="closeGame()">&times;</span>
+        <h2>Wordie</h2>
+        <p id="instructions">Enter a word that starts with the last letter of the word given.</p>
+        <div id="word-chain"></div>
+        <div class="input-container">
+            <input type="text" id="player-word" placeholder="Enter your word" maxlength="15">
+            <button id="submit-btn" onclick="playerTurn()">Submit</button>
+        </div>
+        <p id="timer">Time left: <span id="time-left">30</span> seconds</p>
+        <p id="score">Player 2 Score: <span id="player-score">0</span></p>
+        <p id="ai-score">Your Score: <span id="ai-score-value">0</span></p>
+        <p id="message"></p>
+    </div>
+
+    <!-- Letter Recall Game Section -->
+    <div id="letter-recall" class="game-content" style="display: none;">
+        <span class="close" onclick="closeGame()">&times;</span>
+        <h2>Flash!</h2>
+        <p id="instruction">Memorize the sequence of letters and write them out!</p>
+       
+        <div class="status">
+            <p id="current-level">Level: 1</p>
+            <p id="timer">Time: 15s</p>
+        </div>
+  
+        <div id="letter-display" class="letter-display"></div>
+        <input type="text" id="user-input" placeholder="Type the sequence here" style="display: none;" disabled />
+        <p id="hint" class="hint"></p>
+        <p id="message" class="message"></p>
+        <button id="restart-btn" class="restart-btn" style="display: none;">Restart</button>
+    </div>
+
+    <!-- Neurive Icon -->
+    <img src="neurive.png" alt="Neurive Logo" class="top-right-logo">
+
+    <script src="script.js"></script>
+
+    <style>
+        p2 {
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            color: #f1f0f0;
+            margin: 10px 0;
+        }
+    </style>
+</body>
+</html>
