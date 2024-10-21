@@ -461,3 +461,45 @@ p2 {
 #user-input:hover {
   border-color: #61dafb; /* Hover border color effect */
 }
+/* Default (desktop) styles */
+.hub-container h1 {
+    font-size: 3rem;
+}
+
+.game-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+}
+
+/* Responsive styles for screens smaller than 600px */
+@media (max-width: 600px) {
+    /* Resize the logo */
+    .top-right-logo {
+        width: 60px; /* Smaller logo size on mobile */
+        top: 5px;
+        right: 5px;
+    }
+
+    /* Resize heading */
+    .hub-container h1 {
+        font-size: 2rem; /* Smaller font size for the title */
+    }
+
+    /* Resize buttons */
+    .game-btn {
+        padding: 10px 20px;  /* Smaller padding for buttons */
+        font-size: 1rem;      /* Smaller font size */
+        width: 100%;          /* Make buttons full-width */
+        margin: 10px 0;       /* Add space between buttons */
+    }
+
+    /* Adjust game content sections */
+    .game-content {
+        padding: 10px; /* Add some padding to game sections */
+    }
+
+    /* Adjust grid size for Odd Block game */
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr); /* Adjust grid for smaller screens */
+    }
+}
