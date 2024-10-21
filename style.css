@@ -503,3 +503,32 @@ p2 {
         grid-template-columns: repeat(4, 1fr); /* Adjust grid for smaller screens */
     }
 }
+.top-right-logo {
+    position: absolute; /* Fix the image to the corner */
+    top: 10px;          /* Distance from the top of the page */
+    right: 10px;        /* Distance from the right of the page */
+    width: 100px;       /* Image size (adjust as needed) */
+    height: auto;       /* Keep aspect ratio */
+    z-index: 100;       /* Ensure it stays above other elements */
+}
+
+/* Adjust the logo size and position for mobile */
+@media (max-width: 600px) {
+    .top-right-logo {
+        width: 60px;  /* Smaller logo for mobile */
+        top: 5px;     /* Adjust top margin for mobile */
+        right: 5px;   /* Adjust right margin for mobile */
+    }
+
+    /* Additional downsizing for elements on mobile */
+    .hub-container h1 {
+        font-size: 2rem; /* Resize the title for mobile */
+    }
+
+    .game-btn {
+        font-size: 1rem;  /* Smaller font size for buttons on mobile */
+        padding: 10px 20px;
+        width: 100%;      /* Full-width buttons for mobile */
+        margin: 10px 0;   /* Add spacing between buttons */
+    }
+}
