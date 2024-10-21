@@ -532,3 +532,112 @@ p2 {
         margin: 10px 0;   /* Add spacing between buttons */
     }
 }
+/* General Styles for the Hub */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1b2735 0%, #090a0f 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.hub-container {
+    background: rgba(19, 41, 75, 0.9);
+    backdrop-filter: blur(10px); /* Subtle blur effect for modern look */
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 900px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in-out; /* Smooth intro animation */
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #7f7fd5, #86a8e7, #91eae4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Gradient text */
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #c7d8e0;
+    font-weight: 300;
+}
+
+.info-section h2, h3 {
+    font-size: 1.6rem;
+    margin: 20px 0 10px;
+    color: #f1f0f0;
+}
+
+.info-section p, .info-section ul {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #d1e0e0;
+    line-height: 1.8;
+}
+
+.info-section ul {
+    list-style-type: disc;
+    padding-left: 40px;
+}
+
+.game-btn {
+    background: #61dafb;
+    color: #282c34;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 15px rgba(97, 218, 251, 0.4);
+    margin-top: 30px;
+}
+
+.game-btn:hover {
+    background: #21a1f1;
+    transform: translateY(-5px); /* Button hover effect */
+}
+
+/* Add a smooth fade-in animation for the hub */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .hub-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .game-btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .info-section h2, h3 {
+        font-size: 1.4rem;
+    }
+
+    .info-section p, .info-section ul {
+        font-size: 1rem;
+    }
+}
