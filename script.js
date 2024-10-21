@@ -1,59 +1,58 @@
 let hasNavigatedToGameHub = false; // Track if user has navigated to game hub
 
-function showIntroHub() {
-    const introHub = document.getElementById('intro-hub');
-    const gameHub = document.getElementById('game-hub');
-
-    // Show intro hub, hide game hub
-    introHub.style.display = 'block';
-    gameHub.style.display = 'none';
-    hasNavigatedToGameHub = false;
-}
-
+// Function to show the game hub and hide the intro hub
 function showGameHub() {
     const introHub = document.getElementById('intro-hub');
     const gameHub = document.getElementById('game-hub');
 
+    // Hide intro hub, show game hub
     introHub.style.display = 'none';
     gameHub.style.display = 'block';
+    hasNavigatedToGameHub = true; // Set flag to true after navigating to game hub
 }
 
-
-function closeGame() {
-    const contents = document.querySelectorAll('.game-content');
-    const hubContainer = document.querySelector('.hub-container');  // Make sure this is correct
+// Function to show the intro hub and hide the game hub
+function showIntroHub() {
+    const introHub = document.getElementById('intro-hub');
     const gameHub = document.getElementById('game-hub');
 
-    // Hide all game contents
-    contents.forEach(content => content.style.display = 'none');
-
-    // Show game hub and hub-container
-    gameHub.style.display = 'block';
-    hubContainer.style.display = 'block';
+    // Hide game hub, show intro hub
+    gameHub.style.display = 'none';
+    introHub.style.display = 'block';
+    hasNavigatedToGameHub = false; // Reset flag when user clicks the back button
 }
 
+// Function to close the game and return to the game hub
+function closeGame() {
+    const contents = document.querySelectorAll('.game-content');
+    const gameHub = document.getElementById('game-hub');
 
+    // Show the game hub again
+    gameHub.style.display = 'block';
+    contents.forEach(content => content.style.display = 'none');
+}
+
+// Modal Functions
 function openModal(gameId) {
     const contents = document.querySelectorAll('.game-content');
     const hubContainer = document.querySelector('.hub-container');
 
-    // Hide the hub container
+    // Hide the hub
     hubContainer.style.display = 'none';
 
-    // Hide all game sections and show the selected one
+    // Hide all other game sections and show the selected one
     contents.forEach(content => content.style.display = 'none');
     document.getElementById(gameId).style.display = 'block';
 
-    // Start the appropriate game logic
+    // Start the appropriate game
     if (gameId === 'oddoneout') {
-        initializeGame();
+        initializeGame(); // Initialize Odd One Out game
     } else if (gameId === 'letter-recall') {
-        startGame();
+        startGame(); // Initialize Letter Recall Game
     } else if (gameId === 'chain-play') {
-        // Chain Play doesn't need initialization
+        // Chain Play doesn't need initialization, just display
     }
 }
-
 
 // Odd One Out Game
 const grid = document.getElementById('grid');
