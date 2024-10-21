@@ -17,7 +17,7 @@
 </head>
 <body>
 
-    <!-- Introductory Hub Section -->
+    <!-- Introductory Hub Section (Page 1) -->
     <div id="intro-hub" class="hub-container">
         <h1>Welcome to Neurive</h1>
         <p>Brain Games, Helping The Elderly With Cognitive Strength</p>
@@ -25,13 +25,11 @@
         <button class="game-btn" onclick="showGameHub()">Explore Neurive Games</button>
     </div>
 
-    <!-- Main Game Hub Section -->
-    <div class="hub-container" style="display: none;">
-        <h1>Neurive</h1>
-        <p>Try These Three Games To Improve Your Memory</p>
-        <p2>Author/Creator: Ronit Kalura (2028) Congressional App Challenge - Neurive</p2>
-        
-        <!-- Game selection buttons -->
+    <!-- Game Hub Section (Page 2) -->
+    <div id="game-hub" class="hub-container" style="display: none;">
+        <span class="back-arrow" onclick="showIntroHub()">&#8592; Back</span>
+        <h1>Neurive Games</h1>
+        <p>Select a game to improve your memory!</p>
         <div class="games-list">
             <button class="game-btn" onclick="openModal('oddoneout')">Odd Block</button>
             <button class="game-btn" onclick="openModal('chain-play')">Wordie</button>
@@ -83,7 +81,7 @@
         <button id="restart-btn" class="restart-btn" style="display: none;">Restart</button>
     </div>
 
-    <!-- Neurive Logo -->
+    <!-- Neurive Icon -->
     <img src="https://raw.githubusercontent.com/g44tsec/Neurive/main/Neurive.png" alt="Neurive Logo" class="top-right-logo">
     
     <script src="script.js"></script>
@@ -94,6 +92,14 @@
             font-size: 1rem;
             color: #f1f0f0;
             margin: 10px 0;
+        }
+
+        .back-arrow {
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-block;
         }
     </style>
 </body>
