@@ -16,7 +16,17 @@
     <link rel="apple-touch-icon" href="neurive.png">
 </head>
 <body>
-    <div class="hub-container">
+
+    <!-- Introductory Hub Section -->
+    <div id="intro-hub" class="hub-container">
+        <h1>Welcome to Neurive</h1>
+        <p>Brain Games, Helping The Elderly With Cognitive Strength</p>
+        <p>Neurive focuses on improving memory, cognition, and problem-solving abilities through engaging games. Created by Ronit Kalura as part of the 2028 Congressional App Challenge, Neurive aims to provide fun, interactive brain training.</p>
+        <button class="game-btn" onclick="showGameHub()">Explore Neurive Games</button>
+    </div>
+
+    <!-- Main Game Hub Section -->
+    <div class="hub-container" style="display: none;">
         <h1>Neurive</h1>
         <p>Try These Three Games To Improve Your Memory</p>
         <p2>Author/Creator: Ronit Kalura (2028) Congressional App Challenge - Neurive</p2>
@@ -30,7 +40,7 @@
     </div>
 
     <!-- Odd One Out Game Section -->
-    <div id="oddoneout" class="game-content">
+    <div id="oddoneout" class="game-content" style="display: none;">
         <span class="close" onclick="closeGame()">&times;</span>
         <h2>Odd Block</h2>
         <p>Click on the block that looks different!</p>
@@ -55,14 +65,6 @@
         <p id="message"></p>
     </div>
 
-    <div id="intro-hub" class="hub-container">
-    <h1>Welcome to Neurive</h1>
-    <p>Brain Games, Helping The Elderly With Cognitive Strength</p>
-    <p>Neurive focuses on improving memory, cognition, and problem-solving abilities through engaging games. Created by Ronit Kalura as part of the 2028 Congressional App Challenge, Neurive aims to provide fun, interactive brain training.</p>
-    <button class="game-btn" onclick="showGameHub()">Explore Neurive Games</button>
-</div>
-
-
     <!-- Letter Recall Game Section -->
     <div id="letter-recall" class="game-content" style="display: none;">
         <span class="close" onclick="closeGame()">&times;</span>
@@ -81,7 +83,7 @@
         <button id="restart-btn" class="restart-btn" style="display: none;">Restart</button>
     </div>
 
-    <!-- Neurive Icon -->
+    <!-- Neurive Logo -->
     <img src="https://raw.githubusercontent.com/g44tsec/Neurive/main/Neurive.png" alt="Neurive Logo" class="top-right-logo">
     
     <script src="script.js"></script>
@@ -96,4 +98,3 @@
     </style>
 </body>
 </html>
-
