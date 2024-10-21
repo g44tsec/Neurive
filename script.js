@@ -423,6 +423,16 @@ function showGameHub() {
     introHub.style.display = 'none';
     gameHub.style.display = 'block';
 }
+// JavaScript to show the game hub and hide the intro hub
+
+function showGameHub() {
+    const introHub = document.getElementById('intro-hub');
+    const gameHub = document.querySelector('.hub-container:not(#intro-hub)');
+
+    // Hide the intro hub and show the game hub
+    introHub.style.display = 'none';
+    gameHub.style.display = 'block';
+}
 
 
 
