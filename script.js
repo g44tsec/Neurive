@@ -1,13 +1,4 @@
-//check
 
-function showGameHub() {
-    const introHub = document.getElementById('intro-hub');
-    const gameHub = document.querySelector('.hub-container');
-    
-    // Hide the intro hub and show the game hub
-    introHub.style.display = 'none';
-    gameHub.style.display = 'block';
-}
 
 
 // Modal Functions
@@ -415,16 +406,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Grid item touched', e.target); // Handle touch for grid
   });
 });
-function showGameHub() {
-    const introHub = document.getElementById('intro-hub');
-    const gameHub = document.querySelector('.hub-container');
-    
-    // Hide the intro hub and show the game hub
-    introHub.style.display = 'none';
-    gameHub.style.display = 'block';
-}
-// JavaScript to show the game hub and hide the intro hub
-
 // Function to show the game hub and hide the intro hub
 function showGameHub() {
     const introHub = document.getElementById('intro-hub');
@@ -444,6 +425,7 @@ function showIntroHub() {
     gameHub.style.display = 'none';
     introHub.style.display = 'block';
 }
+
 
 
 
