@@ -1,13 +1,13 @@
 {
     "name": "Neurive",
     "short_name": "Neurive",
-    "start_url": "/",
+    "start_url": "/Neurive/",
     "display": "standalone",
     "background_color": "#13294B",
     "theme_color": "#13294B",
     "icons": [
       {
-        "src": "Neurive.png",
+        "src": "neurive.png",
         "sizes": "192x192",
         "type": "image/png"
       }
