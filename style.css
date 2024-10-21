@@ -644,4 +644,20 @@ h1 {
 .hub-container {
     display: none;
 }
+#chain-play {
+    max-width: 600px; /* Reduce the size of the Chain Play container */
+    margin: 0 auto; /* Center it */
+}
+
+.input-container input {
+    width: 80%; /* Reduce the input field width */
+}
+
+.input-container button {
+    width: 18%; /* Reduce button width */
+}
+
+#chain-play p {
+    font-size: 1rem; /* Adjust text size for better spacing */
+}
 
