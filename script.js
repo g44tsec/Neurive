@@ -14,11 +14,10 @@ function showGameHub() {
     const introHub = document.getElementById('intro-hub');
     const gameHub = document.getElementById('game-hub');
 
-    // Hide intro hub, show game hub
     introHub.style.display = 'none';
     gameHub.style.display = 'block';
-    hasNavigatedToGameHub = true;
 }
+
 
 function closeGame() {
     const contents = document.querySelectorAll('.game-content');
