@@ -281,6 +281,9 @@ let playerScore = 0;
 let aiScore = 0;
 let challengeCount = 0;
 let currentWord;
+let aiMistakeThreshold = 35;  // AI starts making mistakes after this point
+let aiLoseRange = { min: 61, max: 63 };  // AI loses between these word counts
+let currentChainLength = 0;  // Track the chain length for AI mistakes
 
 Promise.all([
     fetch('words.txt').then(response => response.text()),
@@ -288,7 +291,7 @@ Promise.all([
 ])
 .then(texts => {
     wordList = texts.join('\n').split('\n').map(word => word.trim().toLowerCase());
-    aiTurn();
+    aiTurn(); // AI starts first
 });
 
 document.getElementById('player-word').addEventListener('keypress', function (e) {
@@ -298,40 +301,137 @@ document.getElementById('player-word').addEventListener('keypress', function (e)
 });
 
 function playerTurn() {
-    const input = document.getElementById('player-word');
-    const word = input.value.trim().toLowerCase();
+    const playerWord = document.getElementById('player-word').value.trim().toLowerCase();
+    const lastAIWord = chain.length > 0 ? chain[chain.length - 1] : '';
+    const lastLetter = lastAIWord ? lastAIWord.slice(-1).toLowerCase() : '';
 
-    if (!validateWord(word)) {
-        document.getElementById('error').textContent = "Invalid word!";
-        return;
+    if (isValidWord(playerWord, lastLetter)) {
+        chain.push(playerWord);
+        updateChain();
+        playerScore += calculateScore(playerWord);
+        document.getElementById('player-score').textContent = playerScore;
+        document.getElementById('player-word').value = '';
+        challengeCount = 0;
+        currentWord = playerWord;
+        currentChainLength++;  // Increase chain length after a valid word
+        setTimeout(aiTurn, 1000);
+        document.getElementById('message').textContent = '';
+    } else {
+        handleInvalidWord(lastLetter);
+        document.getElementById('player-word').value = '';
     }
-
-    chain.push(word);
-    playerScore++;
-    updateScores();
-
-    document.getElementById('player-word').value = '';
-    aiTurn();
 }
 
-function validateWord(word) {
-    return wordList.includes(word) && (!currentWord || word[0] === currentWord.slice(-1));
+function handleInvalidWord(lastLetter) {
+    challengeCount++;
+
+    if (challengeCount < 2) {
+        suggestNewWord(lastLetter);
+    } else {
+        document.getElementById('message').textContent = 'You have exhausted your chances.';
+        endGame('Game over! You failed to enter a valid word.');
+    }
+}
+
+function suggestNewWord(lastLetter) {
+    const availableSuggestions = wordList.filter(word => word[0] === lastLetter && !chain.includes(word));
+    
+    if (availableSuggestions.length > 0) {
+        const suggestedWord = availableSuggestions[Math.floor(Math.random() * availableSuggestions.length)];
+        document.getElementById('message').textContent = `Try to use: '${suggestedWord.toUpperCase()}'`;
+        currentWord = suggestedWord;
+    } else {
+        document.getElementById('message').textContent = 'No suggestions available.';
+    }
 }
 
 function aiTurn() {
-    const candidates = wordList.filter(word => !chain.includes(word) && (!currentWord || word[0] === currentWord.slice(-1)));
+    if (chain.length === 0) {
+        // AI starts first with a random word
+        const firstWord = wordList[Math.floor(Math.random() * wordList.length)];
+        chain.push(firstWord);
+        updateChain();
+        aiScore += calculateScore(firstWord);
+        document.getElementById('ai-score-value').textContent = aiScore;
+        currentWord = firstWord;
+    } else {
+        const lastPlayerWord = chain[chain.length - 1];
+        const lastLetter = lastPlayerWord.slice(-1).toLowerCase();
+        const aiWord = findAIWord(lastLetter);
 
-    if (candidates.length === 0) {
-        document.getElementById('error').textContent = "AI can't think of a word!";
-        return;
+        if (aiWord) {
+            chain.push(aiWord);
+            updateChain();
+            aiScore += calculateScore(aiWord);
+            document.getElementById('ai-score-value').textContent = aiScore;
+            currentWord = aiWord;
+            currentChainLength++;  // Increase chain length after a valid AI word
+
+            // Start AI mistake logic after the chain reaches a certain length
+            if (currentChainLength >= aiMistakeThreshold) {
+                graduallyWeakenAI();
+            }
+        } else {
+            // AI couldn't find a valid word and loses
+            endGame('AI couldn\'t find a word. You win!');
+        }
     }
 
-    currentWord = candidates[Math.floor(Math.random() * candidates.length)];
-    chain.push(currentWord);
-    aiScore++;
-    updateScores();
+    document.getElementById('message').textContent = `Your word must start with '${currentWord.slice(-1).toUpperCase()}'.`;
 }
 
-function updateScores() {
-    document.getElementById('score').textContent = `Player: ${playerScore} AI: ${aiScore}`;
+function isValidWord(word, lastLetter) {
+    const startsCorrectly = word[0] === lastLetter;
+    const notUsed = chain.indexOf(word) === -1;
+    const validInList = wordList.includes(word);
+
+    return startsCorrectly && notUsed && validInList;
+}
+
+function findAIWord(lastLetter) {
+    // AI starts to struggle with finding words after a certain chain length
+    let availableWords = wordList.filter(word => word[0] === lastLetter && !chain.includes(word));
+
+    // Introduce AI mistake logic
+    if (currentChainLength >= aiMistakeThreshold && currentChainLength < aiLoseRange.min) {
+        // AI has a higher chance of failing as the chain progresses
+        availableWords = availableWords.filter((word, index) => index % 2 === 0);  // AI can only pick half of the options
+    } else if (currentChainLength >= aiLoseRange.min) {
+        // AI loses between chain lengths of 61 and 63
+        if (currentChainLength >= aiLoseRange.min && currentChainLength <= aiLoseRange.max) {
+            return null;  // AI deliberately fails
+        }
+    }
+
+    return availableWords.length > 0 ? availableWords[Math.floor(Math.random() * availableWords.length)] : null;
+}
+
+function calculateScore(word) {
+    let score = word.length;
+    const rareLetters = ['q', 'x', 'z'];
+    for (let letter of rareLetters) {
+        if (word.includes(letter)) {
+            score += 5;
+        }
+    }
+    return score;
+}
+
+function updateChain() {
+    document.getElementById('word-chain').textContent = 'Chain: ' + chain.join(' -> ');
+}
+
+function graduallyWeakenAI() {
+    const chanceToFail = (currentChainLength - aiMistakeThreshold) * 5;  // Increasing chance of failure
+    if (Math.random() * 100 < chanceToFail) {
+        // AI fails by picking a word that doesn't meet the criteria
+        document.getElementById('message').textContent = 'AI failed to find a valid word.';
+        endGame('You win! The AI couldn\'t keep up.');
+    }
+}
+
+function endGame(message) {
+    document.getElementById('message').textContent = message;
+    document.getElementById('player-word').disabled = true;
+    document.getElementById('submit-btn').disabled = true;
 }
