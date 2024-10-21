@@ -32,14 +32,13 @@ function closeGame() {
     contents.forEach(content => content.style.display = 'none');
 }
 
+// Modal Functions
 function openModal(gameId) {
     const contents = document.querySelectorAll('.game-content');
     const hubContainer = document.querySelector('.hub-container');
-    const gameHub = document.getElementById('game-hub');
 
     // Hide the hub
     hubContainer.style.display = 'none';
-    gameHub.style.display = 'none'; // Ensure the game hub is hidden
 
     // Hide all other game sections and show the selected one
     contents.forEach(content => content.style.display = 'none');
@@ -54,7 +53,6 @@ function openModal(gameId) {
         // Chain Play doesn't need initialization, just display
     }
 }
-
 
 // Odd One Out Game
 const grid = document.getElementById('grid');
