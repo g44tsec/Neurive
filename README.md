@@ -3,7 +3,7 @@ Brain Games, Helping The Elderly With Cognitive Strength
 
 # Introduction to Neurive and the Congressional App Challenge
 
-Neurive is an innovative brain-training platform developed by Ronit Kalura as part of the 2028 Congressional App Challenge, a national competition that encourages students to create apps that address real-world problems. Neurive focuses on improving memory, cognition, and problem-solving abilities through engaging and interactive games.
+Neurive is an innovative brain-training platform developed as part of the 2024 Congressional App Challenge, a national competition that encourages students to create apps that address real-world problems. Neurive focuses on improving memory, cognition, and problem-solving abilities through engaging and interactive games.
 
 The Congressional App Challenge is a prestigious event aimed at inspiring students across the U.S. to develop software solutions and explore the power of coding. The competition encourages young developers to create applications that can make a meaningful impact on their communities and beyond. Neurive was created with this goal in mind, designed to provide users with a fun and effective way to strengthen their cognitive abilities.
 
